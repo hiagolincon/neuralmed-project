@@ -1,5 +1,3 @@
-'use server';
-
 import { EventsInfo, HeroData, HeroDetailInfo } from '../types';
 import { apiKey } from './apiMarvel';
 
