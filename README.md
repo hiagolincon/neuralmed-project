@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## NeuralMed
 
-## Getting Started
+<p align="center">
+  <a href="#ℹ%EF%B8%8F-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-packages">Packages</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-getting-started">Começando</a>
+</p>
 
-First, run the development server:
+## ℹ️ Sobre
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<div align="center">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  <p align="center">
+   Essa é uma aplicação para teste da empresa NeuralMed, cujo objetivo é fazer uma listagem com filtro de busca e página de detalhes, usando a api da Marvel. Foi desenvolvido com NextJs 14, Typescript, Tanstack Query e Tailwind. Para a construção do css foi utilizado Tailwind, Vitest e react-testing-library para os testes unitários.
+  </p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+</div>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🖥 Packages
 
-## Learn More
+Este projeto utiliza as seguintes ferramentas e configurações:
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js]: Framework React para aplicações web
+- [React]: Biblioteca para construir interfaces de usuário
+- [TypeScript]: Superset de JavaScript que adiciona tipagem estática
+- [Tailwind]: Framework CSS utilitário para estilização rápida
+- [Vitest]: Framework de testes para TypeScript e JavaScript
+- [ESLint]: Ferramenta para análise estática de código e detecção de problemas
+- [Prettier]: Ferramenta de formatação de código
+- [Husky]: Ferramenta para hooks de git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Comaçando
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Primeiro de tudo você precisa ter `node` e `npm` instalados em sua máquina.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. `git clone https://github.com/SEU_USUARIO/neuralmed.git`
+2. `cd neuralmed`
+3. `npm install`
+4. `npm run dev`
+5. `npm run test`
+6. `npm run lint`
+7. `npm run lint:fix`
+7. `npm run lint:fix`
+7. `npm run lint:strict`
