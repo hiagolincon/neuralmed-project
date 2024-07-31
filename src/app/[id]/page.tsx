@@ -6,10 +6,10 @@ import {
   getEvents,
   getHeroInfo,
   getSeries,
-} from '../server/actions';
-import { EventsInfo, HeroDetailInfo } from '../types';
-import Spinner from '../components/Spinner';
-import Cards from '../components/Cards';
+} from '@/app/server/actions';
+import { EventsInfo, HeroDetailInfo } from '@/app/types';
+import Spinner from '@/app/components/Spinner';
+import Cards from '@/app/components/Cards';
 
 export default function HeroesDetails({
   params,
@@ -41,6 +41,14 @@ export default function HeroesDetails({
     queryFn: () => getSeries(params.id),
     refetchOnWindowFocus: false,
   });
+
+  if (heroInfoQuery.isError) {
+    return (
+      <p className="flex h-20 items-center justify-center">
+        Erro ao carregar detalhes dos personagens.
+      </p>
+    );
+  }
 
   const isLoading =
     heroInfoQuery.isFetching &&

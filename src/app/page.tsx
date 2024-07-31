@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Search from './components/Search';
-import { getHeroes, searchHeroes } from './server/actions';
+import Search from '@/app/components/Search';
+import { getHeroes, searchHeroes } from '@/app/server/actions';
 import {
   keepPreviousData,
   useQuery,
@@ -11,8 +11,8 @@ import {
 } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 import { useRouter } from 'next/navigation';
-import { HeroData } from './types';
-import Spinner from './components/Spinner';
+import { HeroData } from '@/app/types';
+import Spinner from '@/app/components/Spinner';
 
 export default function Page() {
   const [debouncedQuery, setDebouncedQuery] = useState('');
@@ -42,7 +42,7 @@ export default function Page() {
     enabled: !!debouncedQuery,
   });
   const isFetching = allNamesQuery.isFetching || searchNamesQuery.isFetching;
-  const error = allNamesQuery.error || searchNamesQuery.error;
+  const isError = allNamesQuery.isError || searchNamesQuery.isError;
 
   const data = debouncedQuery ? searchNamesQuery.data : allNamesQuery.data;
 
@@ -72,6 +72,14 @@ export default function Page() {
     }
   };
 
+  if (isError) {
+    return (
+      <p className="flex h-20 items-center justify-center">
+        Erro ao carregar personagens.
+      </p>
+    );
+  }
+
   return (
     <div className="p-8">
       {!allNamesQuery.isFetching && (
@@ -81,7 +89,6 @@ export default function Page() {
           <Search setDebouncedQuery={setDebouncedQuery} />
         </>
       )}
-      {error && <p>Erro ao carregar personagens.</p>}
       {isFetching ? (
         <div className="flex h-screen w-full justify-center">
           <Spinner />

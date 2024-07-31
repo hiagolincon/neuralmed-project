@@ -1,5 +1,5 @@
 import { heroCardInfo } from '@/app/types';
-import Spinner from '../Spinner';
+import Spinner from '@/app/components/Spinner';
 
 export default function Cards({ cards }: heroCardInfo) {
   if (cards.isFetching) {

@@ -28,6 +28,7 @@ export default function Search({
           onChange={(e) => setSearch(e.target.value)}
           className="flex-1 border-0 bg-transparent p-2.5 text-sm text-[#94A3B8] outline-none"
           id="search-input"
+          data-testid="search-test"
         />
         <Image
           src="/search.svg"

@@ -1,5 +1,5 @@
-import { EventsInfo, HeroData, HeroDetailInfo } from '../types';
-import { apiKey } from './apiMarvel';
+import { EventsInfo, HeroData, HeroDetailInfo } from '@/app/types';
+import { apiKey } from '@/app/server/apiMarvel';
 
 export const getHeroes = async (offset: number): Promise<HeroData> => {
   const response = await fetch(

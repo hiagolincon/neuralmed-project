@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import ReactQueryProvider from './providers/ReactQueryProvider';
+import '@/app/globals.css';
+import ReactQueryProvider from '@/app/providers/ReactQueryProvider';
 import Image from 'next/image';
 import Link from 'next/link';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <header className="flex justify-between border-b border-[#334155] px-8 py-2">
           <Link href="/" className="flex items-center">
             <Image

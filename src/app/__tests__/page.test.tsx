@@ -1,7 +1,14 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, MockedFunction } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Page from '../page';
-import { describe, expect, it, vi } from 'vitest';
+import { HeroData } from '@/app/types';
+import { getHeroes } from '@/app/server/actions';
+import Page from '@/app/page';
+
+vi.mock('@/app/server/actions', () => ({
+  getHeroes: vi.fn(),
+  searchHeroes: vi.fn(),
+}));
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -13,77 +20,48 @@ vi.mock('next/navigation', () => ({
   }),
 }));
 
-vi.mock('./server/actions', () => ({
-  getHeroes: vi.fn().mockResolvedValue({
-    total: 10,
-    count: 5,
-    results: [
-      {
-        id: 1,
-        name: 'Hero 1',
-        thumbnail: { path: '', extension: 'jpg' },
-        series: { items: [] },
-        events: { items: [] },
-      },
-      {
-        id: 2,
-        name: 'Hero 2',
-        thumbnail: { path: '', extension: 'jpg' },
-        series: { items: [] },
-        events: { items: [] },
-      },
-    ],
-  }),
-  searchHeroes: vi.fn().mockResolvedValue({
-    total: 10,
-    count: 5,
-    results: [
-      {
-        id: 3,
-        name: 'Hero 3',
-        thumbnail: { path: '', extension: 'jpg' },
-        series: { items: [] },
-        events: { items: [] },
-      },
-      {
-        id: 4,
-        name: 'Hero 4',
-        thumbnail: { path: '', extension: 'jpg' },
-        series: { items: [] },
-        events: { items: [] },
-      },
-    ],
-  }),
-}));
-
 describe('Page component', () => {
-  const queryClient = new QueryClient();
+  it('should render the search component and handle user interactions', async () => {
+    const mockHeroData: HeroData = {
+      results: [
+        {
+          name: 'Spider-Man',
+          id: 1,
+          thumbnail: { path: 'path/to/spiderman', extension: 'jpg' },
+          series: { items: [{ name: 'Amazing Spider-Man' }] },
+          events: { items: [{ name: 'Spider-Verse' }] },
+        },
+      ],
+      total: 1,
+      count: 1,
+      offset: 0,
+      limit: 1,
+    };
 
-  const Wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+    (getHeroes as MockedFunction<typeof getHeroes>).mockResolvedValue(
+      mockHeroData,
+    );
 
-  it('renders the page component', async () => {
+    const queryClient = new QueryClient();
+
     render(
       <QueryClientProvider client={queryClient}>
         <Page />
       </QueryClientProvider>,
     );
 
-    expect(screen.findByText(/Busca de Personagens/i)).toBeDefined();
-  });
+    await waitFor(() => {
+      expect(screen.getByText('Busca de Personagens')).toBeDefined();
+    });
 
-  it('handles search', async () => {
-    render(<Page />, { wrapper: Wrapper });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: 'Spider-Man' },
+    });
 
-    await waitFor(() => expect(screen.findByText(/Hero 3/i)).toBeDefined());
-    expect(screen.findByText(/Hero 4/i)).toBeDefined();
-  });
-
-  it('handles pagination', async () => {
-    render(<Page />, { wrapper: Wrapper });
-
-    await waitFor(() => expect(screen.findByText(/Hero 3/i)).toBeDefined());
-    expect(screen.findByText(/Hero 4/i)).toBeDefined();
+    await waitFor(() => {
+      expect(screen.getByText('Spider-Man')).toBeDefined();
+      expect(screen.getByText('Amazing Spider-Man')).toBeDefined();
+      expect(screen.getByText('Spider-Verse')).toBeDefined();
+    });
   });
 });

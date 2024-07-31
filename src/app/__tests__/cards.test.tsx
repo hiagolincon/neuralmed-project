@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Cards from '../components/Cards';
+import Cards from '@/app/components/Cards';
 
-vi.mock('../Spinner', () => ({
+vi.mock('@/app/components/Spinner', () => ({
   default: () => <div>Spinner Mock</div>,
 }));
 

@@ -1,5 +1,6 @@
 ## NeuralMed
 
+
 <p align="center">
   <a href="#ℹ%EF%B8%8F-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-packages">Packages</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -38,7 +39,8 @@ Primeiro de tudo você precisa ter `node` e `npm` instalados em sua máquina.
 3. `npm install`
 4. `npm run dev`
 5. `npm run test`
-6. `npm run lint`
-7. `npm run lint:fix`
-7. `npm run lint:fix`
-7. `npm run lint:strict`
+6. `npm run coverage`
+7. `npm run lint`
+8. `npm run lint:fix`
+9. `npm run lint:fix`
+10. `npm run lint:strict`
