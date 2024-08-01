@@ -42,5 +42,4 @@ Primeiro de tudo você precisa ter `node` e `npm` instalados em sua máquina.
 6. `npm run coverage`
 7. `npm run lint`
 8. `npm run lint:fix`
-9. `npm run lint:fix`
-10. `npm run lint:strict`
+9. `npm run lint:strict`
